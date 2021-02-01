@@ -1,14 +1,229 @@
+/* Variables */
+
 :root {
-  --primary:#FFF;
-  --secondary:#000;
+  --background: rgb(209, 209, 209);
+  --primary: #5d59b1;
+  --coolGray800: #28282f;
+  --coolGray500: #737286;
+  --coolGray200: #dedde4;
+  --cardBackground: #fff;
+  --easeInOutCubic: cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+/* Reset start */
 
 * {
-  box-sizing:border-box;
-  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
-html {
-  background: var(--secondary);
+html, body, button, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Reset end */
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 58px;
+  line-height: 1.15;
+  letter-spacing: -.028em;
+  margin: 0 0 .15em -.1em;
+  /* font-size: clamp(47px, 4.5vw, 62px); */
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.024em;
+  /* font-size: clamp(20px, 1.9vw, 26px); */
+  color: var(--coolGray500);
+}
+
+a {
   color: var(--primary);
+}
+
+/* Base */
+
+html {
+  background: var(--background);
+  color: var(--coolGray800);
+  font-size: 10px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-image: linear-gradient(43deg, #272a38 0%, #674665 46%, #b9ab93 100%);
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 300;
+  letter-spacing: -.006em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Card */
+
+.card {
+  width: 600px;
+  height: 340px;
+  perspective: 1000px;
+}
+
+.card.is-flipped .card__container {
+  transform: rotateX(180deg);
+}
+
+.card__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .6s ease;
+  transform-style: preserve-3d;
+}
+
+.card__side {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 5rem 6rem;;
+  background: var(--cardBackground);
+  border-radius: .6rem;
+  box-shadow: 0 20px 32px rgba(0, 0, 0, .1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card__side--back {
+  transform: rotateX(180deg);
+}
+
+.card__side__footer {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card__header__description {
+  position: relative;
+  font-size: 24px;
+  line-height: 1.5;
+  padding-top: 3rem;
+}
+
+.card__header__description::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: var(--coolGray200)
+}
+
+.list__item__link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.list__item__link__image {
+  width: 24px;
+  height: 24px;
+  margin-right: .5em;
+}
+
+/* Toggle, used to flip card */
+
+.toggle {
+  font-size: 0;
+  margin-left: auto;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color .2s var(--easeInOutCubic);
+}
+
+.toggle:hover {
+  background-color: #eee;
+}
+
+.toggle__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Media */
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 420px;
+    height: 238px;
+  }
+
+  .card__side {
+    padding: 3rem;
+  }
+
+  h1 {
+    font-size: 44px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
